@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HushBudget — Personal Finance Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <h1>HushBudget</h1>
+    <div class="actions">
+      <button id="theme-toggle" title="Toggle theme">🌙</button>
+      <button id="export-csv" title="Export transactions">Export CSV</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel form-panel">
+      <h2>Add Transaction</h2>
+      <form id="tx-form" autocomplete="off">
+        <label>
+          Description
+          <input type="text" id="desc" required placeholder="e.g., Grocery" />
+        </label>
+
+        <label>
+          Amount (positive income / negative expense)
+          <input type="number" id="amount" required step="0.01" placeholder="-45.00 or 120.00" />
+        </label>
+
+        <label>
+          Category
+          <select id="category">
+            <option>Food</option>
+            <option>Transport</option>
+            <option>Salary</option>
+            <option>Shopping</option>
+            <option>Utilities</option>
+            <option>Other</option>
+          </select>
+        </label>
+
+        <label>
+          Date
+          <input type="date" id="date" required />
+        </label>
+
+        <div class="form-actions">
+          <button type="submit" id="add-btn">Add Transaction</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel stats-panel">
+      <div class="balance">
+        <h3>Balance</h3>
+        <p id="balance-value">₹0.00</p>
+      </div>
+
+      <div class="charts">
+        <div class="chart-card">
+          <h4>Spending by Category</h4>
+          <canvas id="pieChart" width="400" height="300"></canvas>
+        </div>
+
+        <div class="chart-card">
+          <h4>Balance Over Time</h4>
+          <canvas id="lineChart" width="400" height="300"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel list-panel">
+      <h2>Transactions</h2>
+      <ul id="tx-list" class="tx-list"></ul>
+      <p id="no-tx" class="muted">No transactions yet — add one above.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>Made with ❤️ — paste to GitHub & deploy</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
